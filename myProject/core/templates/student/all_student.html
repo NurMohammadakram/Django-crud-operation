@@ -13,7 +13,6 @@ All Student - Student Management System
 <table>
     <thead>
         <tr>
-            <th>ID(Primary Key)</th>
             <th>Student ID</th>
             <th>Full Name</th>
             <th>Department</th>
@@ -28,7 +27,6 @@ All Student - Student Management System
 
         {% for student in students %}
         <tr>
-            <td>{{ student.id }}</td>
             <td>{{ student.student_id }}</td>
             <td>{{ student.full_name }}</td>
             <td>{{ student.department }}</td>
@@ -36,7 +34,7 @@ All Student - Student Management System
             <td>{{ student.gender | title }}</td>
             <td>{{ student.address }}</td>
             <td>
-                <a href="">Edit</a>
+                <a href="{% url 'edit_student' student.id %}">Edit</a>
                 <a href="{% url 'view_student' student.id %}">View</a>
                 <a href="{% url 'delete_student' student.id %}">Delete</a>
             </td>

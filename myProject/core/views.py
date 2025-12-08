@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from core.models import Student
 
@@ -48,5 +48,26 @@ def delete_student(request, id):
     student.delete()
     
     return redirect('all_student')
+
+def edit_student(request, id):
+    
+    student = get_object_or_404(Student, id=id)
+    
+    context = {
+        "student":student
+    }
+    
+    if request.method =="POST":
+        student.student_id = int(request.POST.get('student_id'))
+        student.full_name = request.POST.get('full_name')
+        student.department = request.POST.get('department')
+        student.dob = request.POST.get('dob')
+        student.gender = request.POST.get('gender')
+        student.address = request.POST.get('address')
+        
+        student.save()
+        return redirect('all_student')
+    
+    return render(request, 'student/edit_student.html', context)
     
     
