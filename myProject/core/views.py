@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.db.models import Q
 
 from core.models import Student
 
@@ -28,14 +29,21 @@ def add_student(request):
 
 def all_student(request):
     
-    
-    students = Student.objects.all()
+    query = request.GET.get('query')
+    if query: 
+        students = Student.objects.filter ( Q(full_name__icontains=query) | Q(department__icontains=query))
+    else:
+        students = Student.objects.all()
 
+    order = request.GET.get('order')
+    if order == 'asc':
+        students = students.order_by('full_name')
+    elif order == 'desc':
+        students = students.order_by('-full_name')
     
     context = {
         'students': students
     }
-    
     return render(request, 'student/all_student.html', context)
 
 def view_student(request, id):
