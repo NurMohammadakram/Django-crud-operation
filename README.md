@@ -68,3 +68,21 @@ Visit http://127.0.0.1:8000/ in your browser to view the app.
 ###### Core App
 
 The core application in this project is named core, and it contains the necessary views, models, and templates for managing CRUD operations.
+
+
+## Other necessary commands
+### To check Directory
+```bash
+Dir
+```
+
+### To change the Directory
+```bash
+cd Directory-name
+```
+
+### To get back to previous Directory
+```bash
+cd ..
+```
+
