@@ -28,7 +28,9 @@ def add_student(request):
 
 def all_student(request):
     
+    
     students = Student.objects.all()
+
     
     context = {
         'students': students
